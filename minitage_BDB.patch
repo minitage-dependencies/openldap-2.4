@@ -1,0 +1,28 @@
+diff -ur openldap-2.4.20/configure openldap-2.4.20.new/configure
+--- openldap-2.4.20/configure	2009-09-30 00:26:39.000000000 +0000
++++ openldap-2.4.20.new/configure	2009-11-30 15:07:26.921581390 +0000
+@@ -28027,6 +28027,15 @@
+      ) | sed "s/^/$as_me: WARNING:     /" >&2
+     ;;
+ esac
++echo
++echo Minitage CFLAGS/LDFLAGS switching
++echo " $CFLAGS -> $MINITAGE_CFLAGS"
++echo " $LDFLAGS -> $MINITAGE_LDFLAGS"
++CFLAGS="$MINITAGE_CFLAGS"
++CPPFLAGS="$MINITAGE_CPPFLAGS"
++LDFLAGS="$MINITAGE_LDFLAGS"
++export CFLAGS LDFLAGS CPPFLAGS
++echo
+ { echo "$as_me:$LINENO: checking for $ac_header" >&5
+ echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6; }
+ if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
+@@ -28909,6 +28918,8 @@
+ 		minor != DB_VERSION_MINOR ||
+ 		patch != DB_VERSION_PATCH )
+ 	{
++        printf("\d.\d.\d\n", major,minor,patch);
++        printf("\d.\d.\d\n", DB_VERSION_MAJOR, DB_VERSION_MINOR, DB_VERSION_PATCH);
+ 		printf("Berkeley DB version mismatch\n"
+ 			"\theader: %s\n\tlibrary: %s\n",
+ 			DB_VERSION_STRING, version);
